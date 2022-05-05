@@ -1,0 +1,19 @@
+[package]
+name = "cortex-time"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+fixsliced_gift = { git = "ssh://git@github.com/NVedsted/fixsliced-gift.git" }
+cortex-m = "0.7.4"
+cortex-m-rt = { version = "0.7.1", features = ["device"] }
+panic-halt = "0.2.0"
+stm32f3xx-hal = { version = "0.9.0", features = ["ld", "rt", "stm32f303xc"] }
+nb = "1.0.0"
+
+[profile.release]
+debug = true
+lto = true
+codegen-units = 1
