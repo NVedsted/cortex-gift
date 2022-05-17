@@ -7,6 +7,8 @@ from chipwhisperer.capture.scopes import OpenADC
 from chipwhisperer.capture.targets import SimpleSerial
 from tqdm import tqdm
 
+DEFAULT_CHUNKS = (25, None)
+
 
 # def reset_target(scope: OpenADC, target: SimpleSerial):
 #     scope.io.nrst = 'low'
@@ -40,11 +42,11 @@ def test_unmasked(scope: OpenADC, target: SimpleSerial, n: int):
     cw.program_target(scope, cw.programmers.STM32FProgrammer, "programs/unmasked.hex")
     plaintext1 = bytes([0xe3, 0x9c, 0x14, 0x1f, 0xa5, 0x7d, 0xba, 0x43,
                         0xf0, 0x8a, 0x85, 0xb6, 0xa9, 0x1f, 0x86, 0xc1])
-    data1 = zarr.open_array(f'data/{n}_unmasked_fixed.zarr', 'w', (n, scope.adc.samples))
+    data1 = zarr.open_array(f'data/{n}_unmasked_fixed.zarr', 'w-', shape=(n, scope.adc.samples), chunks=DEFAULT_CHUNKS)
     for i in tqdm(range(n), "Unmasked - Group 1 (fixed plaintext)"):
         data1[i] = encrypt_plaintext(scope, target, plaintext1)
 
-    data2 = zarr.open_array(f'data/{n}_unmasked_random.zarr', 'w', (n, scope.adc.samples))
+    data2 = zarr.open_array(f'data/{n}_unmasked_random.zarr', 'w-', shape=(n, scope.adc.samples), chunks=DEFAULT_CHUNKS)
     for i in tqdm(range(n), "Unmasked - Group 2 (random plaintext)"):
         plaintext2 = os.urandom(16)
         data2[i] = encrypt_plaintext(scope, target, plaintext2)
@@ -54,11 +56,11 @@ def test_masked(scope: OpenADC, target: SimpleSerial, n: int):
     cw.program_target(scope, cw.programmers.STM32FProgrammer, "programs/masked.hex")
     plaintext1 = bytes([0xe3, 0x9c, 0x14, 0x1f, 0xa5, 0x7d, 0xba, 0x43,
                         0xf0, 0x8a, 0x85, 0xb6, 0xa9, 0x1f, 0x86, 0xc1])
-    data1 = zarr.open_array(f'data/{n}_masked_fixed.zarr', 'w', (n, scope.adc.samples))
+    data1 = zarr.open_array(f'data/{n}_masked_fixed.zarr', 'w-', shape=(n, scope.adc.samples), chunks=DEFAULT_CHUNKS)
     for i in tqdm(range(n), "Masked - Group 1 (fixed plaintext)"):
         data1[i] = encrypt_masked_plaintext(scope, target, plaintext1)
 
-    data2 = zarr.open_array(f'data/{n}_masked_random.zarr', 'w', (n, scope.adc.samples))
+    data2 = zarr.open_array(f'data/{n}_masked_random.zarr', 'w-', shape=(n, scope.adc.samples), chunks=DEFAULT_CHUNKS)
     for i in tqdm(range(n), "Masked - Group 2 (random plaintext)"):
         plaintext2 = os.urandom(16)
         data2[i] = encrypt_masked_plaintext(scope, target, plaintext2)
