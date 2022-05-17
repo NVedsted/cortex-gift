@@ -1,4 +1,4 @@
-chipwhisperer==5.6.1
+git+https://github.com/newaetech/chipwhisperer@76d867db32a707fee12d0662d7f771b0c0025210
 matplotlib==3.5.1
 tqdm==4.64.0
 zarr==2.11.3
