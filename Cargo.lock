@@ -100,6 +100,7 @@ version = "0.1.0"
 dependencies = [
  "cortex-m",
  "cortex-m-rt",
+ "embedded-hal",
  "fixsliced_gift",
  "nb 1.0.0",
  "panic-halt",
@@ -192,7 +193,7 @@ dependencies = [
 [[package]]
 name = "fixsliced_gift"
 version = "0.1.0"
-source = "git+ssh://git@github.com/NVedsted/fixsliced-gift.git#31fe77d03a86291ffae134f3256c834bb241fa68"
+source = "git+ssh://git@github.com/NVedsted/fixsliced-gift.git?rev=de8c0fb87e60884d3eddfa04e50821e5a015c0e2#de8c0fb87e60884d3eddfa04e50821e5a015c0e2"
 
 [[package]]
 name = "fnv"

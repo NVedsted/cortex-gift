@@ -3,13 +3,18 @@ name = "cortex-time"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[bin]]
+name = "unmasked"
+
+[[bin]]
+name = "masked"
 
 [dependencies]
-fixsliced_gift = { git = "ssh://git@github.com/NVedsted/fixsliced-gift.git" }
+fixsliced_gift = { git = "ssh://git@github.com/NVedsted/fixsliced-gift.git", rev = "de8c0fb87e60884d3eddfa04e50821e5a015c0e2" }
 cortex-m = "0.7.4"
 cortex-m-rt = { version = "0.7.1", features = ["device"] }
 panic-halt = "0.2.0"
+embedded-hal = "0.2.7"
 stm32f3xx-hal = { version = "0.9.0", features = ["ld", "rt", "stm32f303xc"] }
 nb = "1.0.0"
 
