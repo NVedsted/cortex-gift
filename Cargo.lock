@@ -193,7 +193,7 @@ dependencies = [
 [[package]]
 name = "fixsliced_gift"
 version = "0.1.0"
-source = "git+ssh://git@github.com/NVedsted/fixsliced-gift.git?rev=de8c0fb87e60884d3eddfa04e50821e5a015c0e2#de8c0fb87e60884d3eddfa04e50821e5a015c0e2"
+source = "git+ssh://git@github.com/NVedsted/fixsliced-gift.git?rev=fefda5d9#fefda5d92442d9507e4e06757bad91834fd3d95a"
 
 [[package]]
 name = "fnv"

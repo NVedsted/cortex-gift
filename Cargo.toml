@@ -10,7 +10,7 @@ name = "unmasked"
 name = "masked"
 
 [dependencies]
-fixsliced_gift = { git = "ssh://git@github.com/NVedsted/fixsliced-gift.git", rev = "de8c0fb87e60884d3eddfa04e50821e5a015c0e2" }
+fixsliced_gift = { git = "ssh://git@github.com/NVedsted/fixsliced-gift.git", rev = "fefda5d9" }
 cortex-m = "0.7.4"
 cortex-m-rt = { version = "0.7.1", features = ["device"] }
 panic-halt = "0.2.0"
