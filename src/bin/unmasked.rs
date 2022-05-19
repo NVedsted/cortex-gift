@@ -11,7 +11,7 @@ use cortex_time::setup;
 fn main() -> ! {
     let (serial, mut trigger) = setup();
 
-    let (mut tx, mut rx) = serial.split();
+    let (_, mut rx) = serial.split();
 
     let key = [
         0xd0, 0xf5, 0xc5, 0x9a, 0x77, 0x00, 0xd3, 0xe7,
@@ -29,8 +29,5 @@ fn main() -> ! {
             fixsliced_gift::gift128::encrypt(&plaintext, &key, &mut ciphertext);
             trigger.set_low().unwrap();
         });
-        for c in ciphertext {
-            block!(tx.write(c)).unwrap();
-        }
     }
 }
