@@ -32,7 +32,7 @@ def encrypt_plaintext(scope: OpenADC, target: SimpleSerial, plaintext: bytes):
 def encrypt_masked_plaintext(scope: OpenADC, target: SimpleSerial, plaintext: bytes):
     scope.arm()
     target.write(plaintext)
-    target.write(os.urandom(4 * 4 * 2))
+    target.write(os.urandom(16 * 2))
     scope.capture()
     return scope.get_last_trace()
 
