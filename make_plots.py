@@ -26,11 +26,17 @@ unmasked_statistic, masked_statistic = dask.compute(unmasked_computation, masked
 biggest = max(unmasked_statistic.max(), masked_statistic.max())
 
 plt.plot(unmasked_statistic)
+plt.title("Leakage measured in the fixed-vs-random setting\nfor the unmasked GIFT-128 implementation")
+plt.xlabel("Power trace sample #")
+plt.ylabel("Absolute leakage measured")
 plt.axis([0, len(unmasked_statistic), 0, biggest])
 plt.savefig(f"plots/{n}_unmasked.png")
 
 plt.clf()
 
 plt.plot(masked_statistic)
+plt.title("Leakage measured in the fixed-vs-random setting\nfor the masked GIFT-128 implementation")
+plt.xlabel("Power trace sample #")
+plt.ylabel("Absolute leakage measured")
 plt.axis([0, len(masked_statistic), 0, biggest])
 plt.savefig(f"plots/{n}_masked.png")
